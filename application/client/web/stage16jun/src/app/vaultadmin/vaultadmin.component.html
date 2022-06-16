@@ -1,0 +1,112 @@
+<div id="iuzatd" class="gpd-container gpd-cnt">
+    <div id="iz6vo" class="gdp-row gpd-grid">
+        <div id="iqtvt" class="cell gpd-clm">
+            <div id="ighf" class="gdp-row gpd-grid sticky">
+                <div id="ik48" class="cell gpd-clm">
+                    <div id="icu6h" class="gpd-text">Vault Dashboard
+                    </div>
+                </div>
+            </div>
+            <div id="i937yi" class="gdp-row gpd-grid">
+                <div id="i5wn7j" class="cell gpd-clm">
+                    <div id="i8zcvg" class="gdp-row gpd-grid">
+                        <div id="il2xxf" class="cell gpd-clm">
+                            <div id="i4a9sf" class="gpd-text">Secure Administration
+                            </div>
+                        </div>
+                        <div class="middle">
+                            <label>
+                            <input type="radio" name="radio" (click)="localvault()" checked/>
+                            <div class="front-end box">
+                              <span>Internal App</span>
+                            </div>
+                          </label>
+
+                            <label>
+                            <input type="radio" name="radio" (click)="openModal()" />
+                            <div class="back-end box">
+                              <span>External App</span>
+                              <span>
+                                <button class="fa fa-pencil btn" style="cursor: pointer;" (click)="UpdateModel()" *ngIf="externalLink != null"></button>
+                                <button class="fa fa-trash btn" style="cursor: pointer;" (click)="DeleteData()" *ngIf="externalLink != null"></button>
+                              </span>
+                            </div>
+                          </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popupmodel -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayModel}">
+    <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container p-5" style="background-color:#f7f6f6">
+                    <form [formGroup]="createProject">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <img id="close_btn" (click)="onCloseHandled()" src="../../assets/img/close.png" alt="">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>IP Address</label>
+                                    <input type="text" [(ngModel)]="externalVault.ipaddress" [ngModelOptions]="{standalone: true}" name="ipaddress" class="form-control mt-2">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Port Number</label>
+                                    <input type="text" [(ngModel)]="externalVault.portnumber" [ngModelOptions]="{standalone: true}" name="portnumber" class="form-control mt-2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>UserName</label>
+                                    <input type="text" [(ngModel)]="externalVault.username" [ngModelOptions]="{standalone: true}" name="username" class="form-control mt-2">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" [(ngModel)]="externalVault.password" [ngModelOptions]="{standalone: true}" [type]="show ? 'text' : 'password'" pw-show-hide="icon" name="password" class="form-control center">
+                                    <div class="input-group-append align-right">
+                                        <img [src]="show ? '../../assets/img/eyeopen.png' : '../../assets/img/eyeslash.png'" height="20" (click)="hideEye()" alt="eye" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Version</label>
+                                    <input type="text" [(ngModel)]="externalVault.version" [ngModelOptions]="{standalone: true}" name="version" class="form-control mt-2">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container">
+                        <div class="row mt-4">
+                            <div class="d-flex justify-content-center">
+                                <div class="p-2 mt-4">
+                                    <button id="create_btn" class="btn btn-success" (click)="storeExternalVault()" *ngIf="externalLink == null || ''">create</button>
+                                    <button id="create_btn" class="btn btn-success" (click)="UpdateData()" *ngIf="externalLink">update</button>
+                                </div>
+                                <div class="p-2 mt-4">
+                                    <button id="cancel_btn" class="btn btn-success" (click)="onCloseHandled()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
